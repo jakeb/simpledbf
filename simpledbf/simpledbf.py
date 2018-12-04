@@ -619,7 +619,12 @@ class Dbf5(DbfBase):
                         if name not in self._dtypes:
                             self._dtypes[name] = "float"
                         #value = float(value)  
-                        value = float(re.sub("[^0-9.]", "", str(value))) # particular dbf I need to import seems to have a letter in first position.
+                        try:
+                            value = float(re.sub("[^0-9.]", "", str(value))) # particular dbf I need to import seems to have a letter in first position.
+                        except:
+                            print(value)
+                            value = 0.0
+                            
                     # No decimal, probably an integer, but if that fails,
                     # probably NaN
                     else:
