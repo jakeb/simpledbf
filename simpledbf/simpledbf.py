@@ -2,6 +2,7 @@ import struct
 import datetime
 import os
 import codecs
+import re 
 
 # Check for optional dependencies.
 try:
@@ -617,7 +618,8 @@ class Dbf5(DbfBase):
                     if b'.' in value:
                         if name not in self._dtypes:
                             self._dtypes[name] = "float"
-                        value = float(value[1:])  # particular dbf I need to import seems to have a letter in first position.
+                        #value = float(value)  
+                        value = float(re.sub("[^0-9.]", "", str(value))) # particular dbf I need to import seems to have a letter in first position.
                     # No decimal, probably an integer, but if that fails,
                     # probably NaN
                     else:
