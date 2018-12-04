@@ -617,7 +617,7 @@ class Dbf5(DbfBase):
                     if b'.' in value:
                         if name not in self._dtypes:
                             self._dtypes[name] = "float"
-                        value = float(value)
+                        value = float(value[1:])  # particular dbf I need to import seems to have a letter in first position.
                     # No decimal, probably an integer, but if that fails,
                     # probably NaN
                     else:
