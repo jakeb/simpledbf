@@ -637,7 +637,7 @@ class Dbf5(DbfBase):
                                   int(value[6:8])
                         if name not in self._dtypes:
                             self._dtypes[name] = "date"
-						value = datetime.date(y, m, d)
+                        value = datetime.date(y, m, d)
                     except:
                         value = self._na
                         
